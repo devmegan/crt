@@ -1,8 +1,14 @@
+/* || Tailwind Imports */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   color: #444;
-  background-color: #f4f3fa;
+  @apply bg-red-200;
 }
 
 .error {
