@@ -54,56 +54,54 @@ function Form() {
 
     return (
         <div>
-            <h1>Contact us form</h1>
             {result && (
                 <p className={`${result.success ? 'success' : 'error'}`}>
                     {result.message}
                 </p>
             )}
-            <form onSubmit={sendEmail}>
-                <p>
-                    <label for="name">Name</label>
-                    <input
-                        type="text"
-                        name="name"
-                        value={state.name}
-                        onChange={onInputChange}
-                    />
-                </p>
-
-                <p>
-                    <label for="email">Email Address</label>
-                    <input
-                        type="text"
-                        name="email"
-                        value={state.email}
-                        onChange={onInputChange}
-                    />
-                </p>
-
-                <p>
-                    <label for="subject">Subject</label>
-                    <input
-                        type="text"
-                        name="subject"
-                        value={state.subject}
-                        onChange={onInputChange}
-                    />
-                </p>
-
-                <p>
-                    <label for="message">Message</label>
-                    <textarea
-                        name="message"
-                        value={state.message}
-                        onChange={onInputChange}
-                    />
-                </p>
-
-                <p>
-                    <input type="submit" value="Send Message" />
-                </p>
-            </form>
+            <div className="form-wrapper">
+                <h1>Contact Us</h1>
+                <form onSubmit={sendEmail}>
+                    <p>
+                        <label for="name">Name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            value={state.name}
+                            onChange={onInputChange}
+                        />
+                    </p>
+                    <p>
+                        <label for="email">Email Address</label>
+                        <input
+                            type="text"
+                            name="email"
+                            value={state.email}
+                            onChange={onInputChange}
+                        />
+                    </p>
+                    <p>
+                        <label for="subject">Subject</label>
+                        <input
+                            type="text"
+                            name="subject"
+                            value={state.subject}
+                            onChange={onInputChange}
+                        />
+                    </p>
+                    <p>
+                        <label for="message">Message</label>
+                        <textarea
+                            name="message"
+                            value={state.message}
+                            onChange={onInputChange}
+                        />
+                    </p>
+                    <p>
+                        <input type="submit" value="Send Message" className="btn-submit" />
+                    </p>
+                </form>
+            </div>
         </div>
     );
 }
