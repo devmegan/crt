@@ -32,7 +32,7 @@ h1 {
 /* || Form Card */
 
 .form-wrapper {
-  @apply bg-blue-200 bg-opacity-30 w-4/5 md:w-1/2 lg:w-1/3 rounded mx-auto mt-10 md:mt-0 px-4 pb-4 md:absolute md:right-0 md:h-screen;
+  @apply bg-gray-900 bg-opacity-30 w-4/5 md:w-1/2 lg:w-2/5 xl:w-1/3 rounded mx-auto mt-10 md:mt-0 px-4 pb-4 md:absolute md:right-0 md:h-screen;
 }
 
 label {
