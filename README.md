@@ -33,9 +33,9 @@ For those suggested improvements that you **do not** make in the code, we want y
     - [x] Test responsiveness using [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) and [amiresponsive](http://ami.responsivedesign.is/)
 
 2. The form validates a customer's request.
-    - [] Add required attr to inputs to prevent form submission with empty fields
-    - [] Update correct type attr on inputs
-    - [] Add maxlength to input fields
+    - [x] Add required attr to inputs to prevent form submission with empty fields
+    - [x] Update correct type attr on inputs
+    - [x] Add maxlength to input fields
     - [] Add validation classes/error messages to input fields
 
 3. The form guards customers against attacks

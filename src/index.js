@@ -70,15 +70,19 @@ function Form() {
                             name="name"
                             value={state.name}
                             onChange={onInputChange}
+                            required
+                            maxlength="100"
                         />
                     </p>
                     <p>
                         <label for="email">Email Address</label>
                         <input
-                            type="text"
+                            type="email"
                             name="email"
                             value={state.email}
                             onChange={onInputChange}
+                            required
+                            maxlength="254"
                         />
                     </p>
                     <p>
@@ -88,6 +92,8 @@ function Form() {
                             name="subject"
                             value={state.subject}
                             onChange={onInputChange}
+                            required
+                            maxlength="100"
                         />
                     </p>
                     <p>
@@ -96,6 +102,8 @@ function Form() {
                             name="message"
                             value={state.message}
                             onChange={onInputChange}
+                            required
+                            maxlength="4000"
                         />
                     </p>
                     <p>
