@@ -28,14 +28,70 @@ For those suggested improvements that you **do not** make in the code, we want y
 ## Suggested Improvements
 
 1. The form renders well on mobile, tablets and desktops.
-2. The form validates a customer's request.
-3. The form guards customers against attacks.
-4. The form guards the Trust against attacks.
-5. The use of more third party libraries.
-6. Better code layout.
-7. Application has automated tests.
-8. Email send to Trust is replaced with a database system.
+    - [x] Responsive design built using [Tailwind CSS](#https://tailwindcss.com/docs/guides/create-react-app)
+    - [x] [CRACO](https://github.com/gsoft-inc/craco) to override React's PostCSS config
+    - [x] Test responsiveness using [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) and [amiresponsive](http://ami.responsivedesign.is/)
 
+2. The form validates a customer's request.
+    - [] Add required attr to inputs to prevent form submission with empty fields
+    - [] Update correct type attr on inputs
+    - [] Add maxlength to input fields
+    - [] Add validation classes/error messages to input fields
+
+3. The form guards customers against attacks
+    - [] Form should only be accessible by HTTPS
+    - [] Add security parameters to fetch headers
+
+4. The form guards the Trust against attacks.
+    - [] Protect from spam using [React Re-Captcha](https://www.npmjs.com/package/react-recaptcha)
+    - [] Server-side validation of form inputs before sending email/inserting row to DB
+
+5. The use of more third party libraries.
+    - [] [React Hook Form](https://react-hook-form.com/) or [Formik](https://formik.org/docs/overview) for form control/validation
+
+6. Better code layout.
+    - [] Separate index.js into separate component files
+    - [] Add comments throughout all code
+
+7. Application has automated tests.
+    - [] Unit Testing using [React Testing Library](https://reactjs.org/docs/testing.html)
+    - [] Solenium for automated testing in the browser
+
+8. Email send to Trust is replaced with a database system.
+    - [] Provison app with an SQL database
+    - [] Database Schema: 
+
+        | Name    | Col Name  | Field Type    |
+        |---------|---------|---------------|
+        | ID (PK) | id      | int           |
+        | Recieved Date    | recieved_date    | date     |
+        | Email   | email   | varchar(254)  |
+        | Name    | name    | varchar(100)  |
+        | Subject | subject | varchar(100)  |
+        | Message | message | varchar(4000) |
+        | Response Date | response_date | date |
+        | Responding Staff Member | response_staff | varchar(100) |
+        | Response Message | response_message | varchar(4000) |
+    
+    The cool thing about this is that we can perform some basic reporting by running queries on the database. I've included some examples of things that could be reported on:
+    
+        1. Response times across certain dates, or for a particular contact id:
+            SELECT * FROM contactform WHERE response_date > 2021-07-01 AND response_date < 2021-08-01
+            SELECT * FROM contactform WHERE id=4242
+            SELECT avg(response_date - recieved_date) as avg_response_time FROM contactform WHERE recieved_date > 2021-01-01
+        
+        2. Number of contact forms submitted with the same email address:
+            SELECT * FROM contactform WHERE email='hansjansen@gmail.com'
+        
+        3. The subject of contact forms containing a specific keyword:
+            SELECT * FROM contactform WHERE subject LIKE '%towpath%'
+            SELECT * FROM contactform WHERE message LIKE '%nottingham%' or '%lincoln%'
+
+        4. Responses sent by a specific member of staff:
+            SELECT * FROM contactform WHERE response_staff='Aaron'
+            SELECT * FROM contactform WHERE response_staff='Paul' AND response_date='2021-01-01'
+            SELECT * FROM contactform WHERE response_staff='Peter' AND email="hansjansen@gmail.com"
+            SELECT * FROM contactform WHERE response_staff='Victoria' AND subject LIKE '%angry swans%'
 
 ## ...
 We're looking forward to how you apply the improvements and then you talking about them with us.
