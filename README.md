@@ -36,7 +36,8 @@ For those suggested improvements that you **do not** make in the code, we want y
     - [x] Add required attr to inputs to prevent form submission with empty fields
     - [x] Update correct type attr on inputs
     - [x] Add maxlength to input fields
-    - [] Add validation classes/error messages to input fields
+    - [x] Add validation styles to input fields
+    - [] Custom validation messages can be added using [Constraint Validation API](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#validating_forms_using_javascript)
 
 3. The form guards customers against attacks
     - [] Form should only be accessible by HTTPS

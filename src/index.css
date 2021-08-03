@@ -50,6 +50,20 @@ input, textarea {
 
 /* || Form Validation */
 
+input[type="text"]:valid,
+input[type="email"]:valid,
+textarea:valid {
+  @apply bg-green-50 border-green-400;
+}
+
+/*
+input[type="text"]:focus:invalid,
+input[type="email"]:focus:invalid,
+textarea:focus:invalid {
+  @apply bg-red-50 border-red-400;
+}
+*/
+
 .error {
   @apply: text-red-500;
 }
