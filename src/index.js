@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
+import FormHeader from './components/Header'
 import FormResult from './components/Result'
 
 import './index.css';
@@ -59,6 +60,7 @@ function Form() {
     return (
         <div>
             <div className="form-wrapper">
+                <FormHeader title="Contact Us" />
                 {!result && 
                     <form onSubmit={sendEmail}>
                         <p>
