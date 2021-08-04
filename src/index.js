@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
+import FormResult from './components/Result'
+
 import './index.css';
 
 function Form() {
@@ -9,6 +11,7 @@ function Form() {
         email: '',
         subject: '',
         message: '',
+        submitted: false,
     });
 
     const [result, setResult] = useState(null);
@@ -33,6 +36,7 @@ function Form() {
                     email: '',
                     subject: '',
                     message: '',
+                    submitted: true,
                 });
             })
             .catch(() => {
@@ -54,62 +58,60 @@ function Form() {
 
     return (
         <div>
-            {result && (
-                <p className={`${result.success ? 'success' : 'error'}`}>
-                    {result.message}
-                </p>
-            )}
             <div className="form-wrapper">
-                <img className="logo-main" src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Canal_%26_River_Trust_Logo_v2.png" alt="Canal and River Trust Logo" />
-                <h1>Contact Us</h1>
-                <form onSubmit={sendEmail}>
-                    <p>
-                        <label for="name">Name</label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={state.name}
-                            onChange={onInputChange}
-                            required
-                            maxlength="100"
-                        />
-                    </p>
-                    <p>
-                        <label for="email">Email Address</label>
-                        <input
-                            type="email"
-                            name="email"
-                            value={state.email}
-                            onChange={onInputChange}
-                            required
-                            maxlength="254"
-                        />
-                    </p>
-                    <p>
-                        <label for="subject">Subject</label>
-                        <input
-                            type="text"
-                            name="subject"
-                            value={state.subject}
-                            onChange={onInputChange}
-                            required
-                            maxlength="100"
-                        />
-                    </p>
-                    <p>
-                        <label for="message">Message</label>
-                        <textarea
-                            name="message"
-                            value={state.message}
-                            onChange={onInputChange}
-                            required
-                            maxlength="4000"
-                        />
-                    </p>
-                    <p>
-                        <input type="submit" value="Send Message" className="btn-submit" />
-                    </p>
-                </form>
+                {!result && 
+                    <form onSubmit={sendEmail}>
+                        <p>
+                            <label for="name">Name</label>
+                            <input
+                                type="text"
+                                name="name"
+                                value={state.name}
+                                onChange={onInputChange}
+                                required
+                                maxlength="100"
+                            />
+                        </p>
+                        <p>
+                            <label for="email">Email Address</label>
+                            <input
+                                type="email"
+                                name="email"
+                                value={state.email}
+                                onChange={onInputChange}
+                                required
+                                maxlength="254"
+                            />
+                        </p>
+                        <p>
+                            <label for="subject">Subject</label>
+                            <input
+                                type="text"
+                                name="subject"
+                                value={state.subject}
+                                onChange={onInputChange}
+                                required
+                                maxlength="100"
+                            />
+                        </p>
+                        <p>
+                            <label for="message">Message</label>
+                            <textarea
+                                name="message"
+                                value={state.message}
+                                onChange={onInputChange}
+                                required
+                                maxlength="4000"
+                            />
+                        </p>
+                        <p>
+                            <input type="submit" value="Send Message" className="btn-submit" />
+                        </p>
+                    </form>
+                }   
+                {result && 
+                    <FormResult result={result}/>
+                }   
             </div>
         </div>
     );
