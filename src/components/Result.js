@@ -6,7 +6,7 @@ class FormResult extends React.Component {
         return(
             <div className="result-wrapper">
                 <p className={`${result.success ? 'success' : 'error'}`}>
-                    {result.message}.
+                    {result.message}
                 </p>
             </div>
         )
