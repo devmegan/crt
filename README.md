@@ -32,8 +32,21 @@
     - [] Add comments throughout all code
 
 7. Application has automated tests.
-    - [] Unit Testing using [React Testing Library](https://reactjs.org/docs/testing.html)
-    - [] Solenium for automated testing in the browser
+    - [x] Unit Testing using [Enzyme](https://enzymejs.github.io/enzyme/)
+    
+        - To run the tests use: 
+
+            ``` npm run test ```
+        
+        - To run a specific suite of tests use: 
+
+            ``` npm run test <suitename> ```
+     
+        - To run the tests with coverage reporting use: 
+        
+            ``` npm run test -- --coverage ```
+
+    - [] Selenium for automated testing in the browser
 
 8. Email send to Trust is replaced with a database system.
     - [] Provison app with an SQL database
