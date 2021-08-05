@@ -49,8 +49,19 @@
     - [] Selenium for automated testing in the browser
 
 8. Email send to Trust is replaced with a database system.
-    - [] Provison app with an SQL database
-    - [] Database Schema: 
+    - [x] Provison app with an ([sqlite](https://sqlite.org/index.html)) database
+    - [] Create contact form table: 
+
+        | Name    | Col Name  | Field Type   |
+        |---------|---------|---------------|
+        | ID (PK) | id      | int           |
+        | Email   | email   | varchar(254)  |
+        | Name    | name    | varchar(100)  |
+        | Subject | subject | varchar(100)  |
+        | Message | message | varchar(4000) |
+
+    - [] Insert new row to table on form submit
+    - [] Expand database schema: 
 
         | Name    | Col Name  | Field Type    |
         |---------|---------|---------------|

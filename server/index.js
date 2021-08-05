@@ -4,6 +4,15 @@ const dotenv = require('dotenv');
 const nodemailer = require('nodemailer');
 dotenv.config();
 
+// open connection to sqlite db
+const sqlite3 = require('sqlite3').verbose()
+let db = new sqlite3.Database(':memory:', (err) => {
+    if (err) {
+      return console.error(err.message);
+    }
+    console.log('Connected to local sqlite database');
+});
+
 const transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
     port: 587,
