@@ -70,17 +70,52 @@ app.use(express.json());
 app.use(express.static(buildPath));
 
 app.post('/send', (req, res) => {
+
+    // prep submitted form values to insert into db/mailOptions
+    let reqName = req.body.name;
+    let reqEmail = req.body.email;
+    let reqSubject = req.body.subject;
+    let reqMessage = req.body.message;
+
+    db.serialize(function () {
+        
+        // prep sql statement to insert to db
+        let insertSql = `INSERT INTO contactform('name', 'email', 'subject', 'message')
+                        VALUES(?, ?, ?, ?)`
+        
+        // insert prepared values into db
+        db.run(insertSql, [reqName, reqEmail, reqSubject, reqMessage], function(err) {
+            if (err) {
+                return console.log(err.message);
+            }
+            console.log(`Row inserted into database:`);
+        });
+
+        // prep sql query to select inserted row
+        let querySql = `SELECT * FROM contactform
+                    ORDER BY contactformid
+                    DESC LIMIT 1`
+        
+        // select inserted row from db
+        db.all(querySql, [], (err, row) => {
+            if (err) {
+                throw err;
+            }
+            console.log(row);
+        });
+    });
+
     const mailOptions = {
-        from: req.body.email,
+        from: reqEmail,
         to: process.env.email,
-        subject: req.body.subject,
+        subject: reqSubject,
         html: `
       <p>The Trust has a new contact us request:</p>
       <ul>
-        <li>Name: ${req.body.name}</li>
-        <li>Email: ${req.body.email}</li>
-        <li>Subject: ${req.body.subject}</li>
-        <li>Message: ${req.body.message}</li>
+        <li>Name: ${reqName}</li>
+        <li>Email: ${reqEmail}</li>
+        <li>Subject: ${reqSubject}</li>
+        <li>Message: ${reqMessage}</li>
       </ul>
       `,
     };
@@ -90,13 +125,13 @@ app.post('/send', (req, res) => {
             if (err) {
                 res.status(500).send({
                     success: false,
-                    message: 'Something went wrong. Try again later',
+                    message: 'Something went wrong. Please try again later.',
                 });
             } else {
                 res.send({
                     success: true,
                     message:
-                        'Thanks for contacting us. We will get back to you shortly',
+                        'Thanks for contacting us. We will get back to you shortly.',
                 });
             }
         });

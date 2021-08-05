@@ -14,22 +14,25 @@
     - [x] Update correct type attr on inputs
     - [x] Add maxlength to input fields
     - [x] Add validation styles to input fields
-    - [] Custom validation messages can be added using [Constraint Validation API](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#validating_forms_using_javascript)
+    - [ ] Custom validation messages can be added using [Constraint Validation API](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#validating_forms_using_javascript)
 
 3. The form guards customers against attacks
-    - [] Form should only be accessible by HTTPS
-    - [] Add security parameters to fetch headers
+    - [ ] Form should only be accessible by HTTPS
+    - [ ] Add security parameters to fetch headers
 
 4. The form guards the Trust against attacks.
-    - [] Protect from spam using [React Re-Captcha](https://www.npmjs.com/package/react-recaptcha)
-    - [] Server-side validation of form inputs before sending email/inserting row to DB
+    - [ ] Protect from spam using [React ReCAPTCHA](https://www.npmjs.com/package/react-recaptcha)
+    - [ ] Server-side validation of form inputs before sending email/inserting row to DB
 
 5. The use of more third party libraries.
-    - [] [React Hook Form](https://react-hook-form.com/) or [Formik](https://formik.org/docs/overview) for form control/validation
+    - [ ] [React Hook Form](https://react-hook-form.com/) or [Formik](https://formik.org/docs/overview) for form control/validation
 
 6. Better code layout.
-    - [] Separate index.js into separate component files
-    - [] Add comments throughout all code
+    - [ ] Separate index.js into separate component files
+        - [x] Header component
+        - [x] Results component (conditionally rendered)
+        - [ ] Form inputs component
+    - [ ] Add comments throughout all code
 
 7. Application has automated tests.
     - [x] Unit Testing using [Enzyme](https://enzymejs.github.io/enzyme/)
@@ -46,36 +49,38 @@
         
             ``` npm run test -- --coverage ```
 
-    - [] Selenium for automated testing in the browser
+    - [ ] [Selenium](https://www.selenium.dev/documentation/en/) for automated browser testing
 
 8. Email send to Trust is replaced with a database system.
-    - [x] Provison app with an ([sqlite](https://sqlite.org/index.html)) database
-    - [x] Create contact form table: 
+    - [x] Provison app with an [sqlite](https://sqlite.org/index.html) database
+    - [x] Create contactform table: 
 
         | Name    | Col Name  | Field Type   |
         |---------|---------|---------------|
-        | ID (PK) | contactformid   | int           |
-        | Email   | email   | varchar(254)  |
+        | ID (PK) | contactformid   | int   |
         | Name    | name    | varchar(100)  |
+        | Email   | email   | varchar(254)  |
         | Subject | subject | varchar(100)  |
         | Message | message | varchar(4000) |
 
-    - [] Insert new row to table on form submit
-    - [] Expand database schema: 
+    - [x] Insert new row to table on form submit
+    - [x] Log inserted row to console
+    - [ ] Replace existing sendMail try/catch
+    - [ ] Expand database schema: 
 
         | Name    | Col Name  | Field Type    |
         |---------|---------|---------------|
-        | ID (PK) | id      | int           |
-        | Recieved Date    | recieved_date    | date     |
+        | ID (PK) | contactformid      | int |
         | Email   | email   | varchar(254)  |
         | Name    | name    | varchar(100)  |
         | Subject | subject | varchar(100)  |
         | Message | message | varchar(4000) |
+        | Recieved Date    | recieved_date    | date  |
         | Response Date | response_date | date |
         | Responding Staff Member | response_staff | varchar(100) |
         | Response Message | response_message | varchar(4000) |
     
-    The cool thing about this is that we can perform some basic reporting by running queries on the database. I've included some examples of things that could be reported on:
+    The cool thing about this is that we could perform some basic reporting by running queries on the database. I've included some examples of things that could be reported on:
     
         1. Response times across certain dates, or for a particular contact id:
             SELECT * FROM contactform WHERE response_date > 2021-07-01 AND response_date < 2021-08-01
@@ -107,6 +112,7 @@ Then run:
 ```
 
 and access the application at `http://localhost:3030/`
+
 ## Original Instructions 
 
 Hi Candidate!
