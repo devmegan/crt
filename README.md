@@ -50,11 +50,11 @@
 
 8. Email send to Trust is replaced with a database system.
     - [x] Provison app with an ([sqlite](https://sqlite.org/index.html)) database
-    - [] Create contact form table: 
+    - [x] Create contact form table: 
 
         | Name    | Col Name  | Field Type   |
         |---------|---------|---------------|
-        | ID (PK) | id      | int           |
+        | ID (PK) | contactformid   | int           |
         | Email   | email   | varchar(254)  |
         | Name    | name    | varchar(100)  |
         | Subject | subject | varchar(100)  |
@@ -87,7 +87,7 @@
         
         3. The subject of contact forms containing a specific keyword:
             SELECT * FROM contactform WHERE subject LIKE '%towpath%'
-            SELECT * FROM contactform WHERE message LIKE '%nottingham%' or '%lincoln%'
+            SELECT * FROM contactform WHERE message LIKE '%nottingham%' OR '%lincoln%'
 
         4. Responses sent by a specific member of staff:
             SELECT * FROM contactform WHERE response_staff='Aaron'

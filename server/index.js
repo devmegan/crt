@@ -13,6 +13,47 @@ let db = new sqlite3.Database(':memory:', (err) => {
     console.log('Connected to local sqlite database');
 });
 
+// create contactform table to insert form submissions to
+db.serialize(function () {
+    db.run(`CREATE TABLE contactform (
+        contactformid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        name VARCHAR(100), 
+        subject VARCHAR(100),
+        email VARCHAR(254),
+        message VARCHAR(4000)
+        )`
+    );
+    console.log('Created contactform table');
+})
+
+/*
+// Populate db with test data
+db.serialize(function () {
+    // prep sql statement to insert to db
+    let insertSql = `INSERT INTO contactform('name', 'email', 'subject', 'message')
+                    VALUES(?, ?, ?, ?)`
+    // prep submitted values to insert into db
+    let name = "megan"
+    let email = "mvamolloy@gmail.com"
+    let subject = "Canal & River Trust"
+    let message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    db.run(insertSql, [name, email, subject, message], function(err) {
+        if (err) {
+            return console.log(err.message);
+        }
+        console.log("Row inserted into database: ");
+    });
+    // read and log test row from db
+    let querySql = `SELECT * FROM contactform`
+    db.all(querySql, [], (err, row) => {
+        if (err) {
+            throw err;
+        }
+        console.log(row);
+    });
+});
+*/
+
 const transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
     port: 587,
